@@ -1,6 +1,4 @@
 ---
-- hosts: all
-  remote_user: vagrant
-  sudo: yes
-  tasks: 
-    - name: 
+# file: site.yml
+- include: webservers.yml
+- include: dbservers.yml
