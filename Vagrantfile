@@ -10,7 +10,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.define "stage" do |stage|
+    stage.vm.box = "ubuntu/trusty64"
+  end
+
+  config.vm.define "production" do |production|
+    production.vm.box = "ubuntu/trusty64"
+  end
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -111,9 +117,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   chef.chef_server_url = "https://api.opscode.com/organizations/ORGNAME"
   #   chef.validation_key_path = "ORGNAME-validator.pem"
   # end
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "provisioning/site.yml"
-  end
+
+  # config.vm.provision "ansible" do |ansible|
+  #   ansible.playbook = "provisioning/site.yml"
+  # end
+
   #
   # If you're using the Opscode platform, your validator client is
   # ORGNAME-validator, replacing ORGNAME with your organization name.
